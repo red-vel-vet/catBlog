@@ -1,4 +1,4 @@
-# Blog Name
+# Cat Blog
 
 ## Description
 
