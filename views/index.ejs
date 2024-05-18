@@ -1,0 +1,42 @@
+<%- include('partials/header.ejs') %>
+
+<section class="container cat-theme">
+  <h2 class="cat-title">Blog Posts</h2>
+  <form action="/new" method="POST" class="cat-form">
+    <input type="submit" class="btn btn-success cat-btn form-spacing" value="Create New Post" />
+  </form>
+
+  <div class="row">
+    <% posts.forEach(post => { %>
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title truncate"><%= post.title %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= post.author %></h6>
+            <p class="card-text"><%= post.createdDate %></p>
+            <p class="card-text truncate-content"><%= post.content %></p> <!-- Add this line -->
+            <div class="d-flex justify-content-between">
+              <form action="/view" method="POST">
+                <input type="hidden" id="postId" name="postId" value="<%= post.id %>" />
+                <input type="submit" class="btn btn-custom" value="View" />
+              </form>
+
+              <form action="/edit" method="POST">
+                <input type="hidden" id="postId" name="postId" value="<%= post.id %>" />
+                <input type="hidden" id="newPost" name="newPost" value="false" />
+                <input type="submit" class="btn btn-custom" value="Edit" />
+              </form>
+              
+              <form action="/delete" method="POST">
+                <input type="hidden" id="postId" name="postId" value="<%= post.id %>" />
+                <input type="submit" class="btn btn-custom" value="Delete" />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('partials/footer.ejs') %>

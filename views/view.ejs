@@ -1,0 +1,25 @@
+<%- include('partials/header.ejs') %>
+
+<section class="container cat-theme">
+  <div class="row">
+    <article class="col-md-8 offset-md-2 cat-card">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title cat-title"><%= post.title %></h2>
+          <p class="card-text">Author: <%= post.author %></p>
+          <p class="card-text">Created Date: <%= post.createdDate %></p>
+          <p class="card-text"><%= post.content %></p>
+        </div>
+      </div>
+      
+      <button onclick="window.location.href='/'" class="cat-btn btn-custom">Home</button>
+
+      <form action="/edit" method="POST" class="cat-form">
+        <input type="hidden" id="postId" name="postId" value=<%= post.id %> />
+        <input type="submit" class="cat-btn btn-custom" value="Edit" />
+      </form>
+    </article>
+  </div>
+</section>
+
+<%- include('partials/footer.ejs') %>
